@@ -1,4 +1,8 @@
 import Tetra
+import TetraFactory
+myFactory = TetraFactory.TetraFactory()
 
-myTetra = Tetra.Tetra(1, 2)
-myTetra.showDim()
+#create a cube tetra
+foo = myFactory.new('cube')
+foo.toHash()
+print(type(foo))
