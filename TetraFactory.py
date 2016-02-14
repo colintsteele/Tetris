@@ -1,7 +1,7 @@
 import Tetra
 import random
 
-class TetraFactory:
+class TetraFactory(object):
 
     __shapeList = {
         'cube': [[1,1],[1,1]],

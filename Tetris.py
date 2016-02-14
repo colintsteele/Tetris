@@ -1,8 +1,9 @@
-import Tetra
 import TetraFactory
+import pygame
+
 myFactory = TetraFactory.TetraFactory()
 
 #create a cube tetra
-foo = myFactory.newTetra('cube')
+foo = myFactory.newTetra()
 foo.toHash()
-print(type(foo))
+
