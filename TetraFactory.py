@@ -1,36 +1,43 @@
 import Tetra
+import random
 
 class TetraFactory:
 
-    __Cube = [[1,1],[1,1]]
-    __L = [[1,0],[1,0],[1,0],[1,1]]
-    __backwardsL = [[0,1],[0,1],[0,1],[1,1]]
-    __Z = [[0,1],[1,1],[1,0]]
-    __backwardsZ = [[1,0],[1,1],[0,1]]
-    __T = [[0,1,0],[1,1,1]]
-    __Jesus = [[1],[1],[1],[1]]
+    __shapeList = {
+        'cube' : [[1,1],[1,1]],
+        'L' : [[1,0],[1,0],[1,0],[1,1]],
+        'backwardsL' : [[0,1],[0,1],[0,1],[1,1]],
+        'Z' : [[0,1],[1,1],[1,0]],
+        'backwardsZ' : [[1,0],[1,1],[0,1]],
+        'T' : [[0,1,0],[1,1,1]],
+        'Jesus' : [[1],[1],[1],[1]]
+    }
 
-    def new(self, shape):
+    def newTetra(self, shape='random'):
+        if shape.lower() == 'random':
+            #pick a random shape by name.
+            shape = random.choice(list(self.__shapeList.keys()))
+
         if shape.lower() == 'cube':
-            return Tetra.Tetra(self.__Cube, 2, 2)
+            return Tetra.Tetra(self.__shapeList['cube'], 2, 2)
 
         if shape.lower =='L':
-            return Tetra.Tetra(self.__L, 2, 3)
+            return Tetra.Tetra(self.__shapeList['L'], 2, 3)
 
         if shape.lower =='backwardsL':
-            return Tetra.Tetra(self.__backwardsL, 2, 3)
+            return Tetra.Tetra(self.__shapeList['backwardsL'], 2, 3)
 
         if shape.lower =='Z':
-            return Tetra.Tetra(self.__Z, 2, 3)
+            return Tetra.Tetra(self.__shapeList['Z'], 2, 3)
 
         if shape.lower =='backwardsZ':
-            return Tetra.Tetra(self.__backwardsZ, 2, 3)
+            return Tetra.Tetra(self.__shapeList['backwardsZ'], 2, 3)
 
         if shape.lower =='T':
-            return Tetra.Tetra(self.__T, 3, 2)
+            return Tetra.Tetra(self.__shapeList['T'], 3, 2)
 
         if shape.lower =='jesus':
-            return Tetra.Tetra(self.__Jesus, 1, 4)
+            return Tetra.Tetra(self.__shapeList['Jesus'], 1, 4)
 
 
 
