@@ -3,10 +3,9 @@ class Tetra(object):
         self.shape = shape
         self.dimX = dimX
         self.dimY = dimY
+        self.pos = [[]]
 
     def toHash(self):
         return {'shape':self.shape,'dimX':self.dimX,'dimY':self.dimY}
 
-    def rotate(self):
-        print('create a rotate method')
-        #TODO create an actual rotate method, maybe with numpy
+

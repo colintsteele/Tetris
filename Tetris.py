@@ -6,7 +6,7 @@ myFactory = TetraFactory.TetraFactory()
 
 #create a random tetra
 foo = myFactory.newTetra()
-foo.toHash()
+activeTetra = foo
 
 pygame.init()
 gameDisplay = pygame.display.set_mode((600,800))
@@ -18,11 +18,16 @@ black = (10,10,10)
 
 gameExit = False
 
-#gameDisplay.fill(black)
-
+#Main game loop
 while not gameExit:
+
+    #set background to totally sic, undoctored pic of tswift and her lesabre
+    gameDisplay.blit(bg, (0, 0))
+    #draw rectangle
+    pygame.draw.rect(gameDisplay, white, [20, 500, 10, 10])
+
     for event in pygame.event.get():
-        gameDisplay.blit(bg, (0, 0))
+
         pygame.display.update()
 
         if event.type == pygame.QUIT:

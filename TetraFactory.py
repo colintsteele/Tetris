@@ -1,5 +1,8 @@
+#The Tetra factory is in charge of creating new tetras.
+
 import Tetra
 import random
+
 
 class TetraFactory(object):
 
