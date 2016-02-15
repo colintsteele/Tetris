@@ -13,8 +13,8 @@ black = (10,10,10)
 #endregion
 
 #region Tetra factory and Tetra Bucket initialization and configuration
-tetraFactory = TetraFactory.Factory()
-tetraBucket = TetraBucket.Bucket()
+factory = TetraFactory.Factory()
+bucket = TetraBucket.Bucket()
 
 #endregion
 
