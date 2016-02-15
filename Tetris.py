@@ -15,7 +15,6 @@ black = (10,10,10)
 #region Tetra factory and Tetra Bucket initialization and configuration
 factory = TetraFactory.Factory()
 bucket = TetraBucket.Bucket()
-
 #endregion
 
 #region Main game loop
