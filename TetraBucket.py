@@ -1,8 +1,12 @@
 #the Tetra Bucket is charged with keeping track of the tetras which are currently
+import pygame
+import TetraFactory
 
 class Bucket(object):
-    def __init__(self):
-        self.activeTetra = None
+    def __init__(self, factory, gameDisplay):
+        self.factory = factory
+        self.activeTetra = self.factory.newTetra()
+        self.gameDisplay = gameDisplay
         #TODO list comprehension which initializes an empty 10X22 field (100 px by 220px + bottom row and edges = 120px x 230px)
 
     def rotateCW(self):
@@ -19,16 +23,17 @@ class Bucket(object):
 
     def move(self, direction = 'down'):
         #see if it is ok to move in the given direction
-        if not self.checkAdjacent(direction, self.activeTetra):
+        #if not self.checkAdjacent(direction, self.activeTetra):
+        if False:
             print('cannot move in that direction!')
             #TODO write exception for not being able to move, catch and do nothing... or something like that
         else:
             #moving in that direction is ok, check which direction to move in, and move there
             if direction.lower() == 'down':
-                #stub
-
-                self.activeTetra.pos[0] += 10
-
+                print("hey")
+                self.activeTetra.update("posX",self.activeTetra.posX+10)
+                self.render(self.activeTetra)
+                self.activeTetra.toHash()
 
             elif direction.lower() == 'left':
                 stub = True
@@ -40,6 +45,10 @@ class Bucket(object):
             else:
                 print('no direction given')
                 #TODO write exception for no direction being given
+
+    def render(self, tetra):
+        deets = [tetra.posX,tetra.posY,10,10]
+        pygame.draw.rect(self.gameDisplay, (255,255,255), deets)
 
     def cement(self, tetra):
         stub = True
