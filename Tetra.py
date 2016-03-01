@@ -18,6 +18,6 @@ class Tetra(object):
 
 
     def toHash(self):
-        return {'shape':self.shape,'dimX':self.dimX,'dimY':self.dimY}
+        return {'shape':self.shape,'dimX':self.dimX,'dimY':self.dimY,"posX":self.posX,"posY":self.posY}
 
 

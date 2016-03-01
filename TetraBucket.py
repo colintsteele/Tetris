@@ -31,9 +31,9 @@ class Bucket(object):
             #moving in that direction is ok, check which direction to move in, and move there
             if direction.lower() == 'down':
                 print("hey")
-                self.activeTetra.update("posX",self.activeTetra.posX+10)
+                self.activeTetra.update("posY",self.activeTetra.posY+10)
                 self.render(self.activeTetra)
-                self.activeTetra.toHash()
+                print(self.activeTetra.toHash())
 
             elif direction.lower() == 'left':
                 stub = True
@@ -47,8 +47,10 @@ class Bucket(object):
                 #TODO write exception for no direction being given
 
     def render(self, tetra):
+        self.gameDisplay.fill((0,0,0))
         deets = [tetra.posX,tetra.posY,10,10]
         pygame.draw.rect(self.gameDisplay, (255,255,255), deets)
+        pygame.display.update()
 
     def cement(self, tetra):
         stub = True

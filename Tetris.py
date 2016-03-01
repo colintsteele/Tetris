@@ -7,10 +7,12 @@ import pygame
 pygame.init()
 gameDisplay = pygame.display.set_mode((600,800))
 pygame.display.set_caption('Taylor Swift\'s 1999 Buick LeSabre')
-bg = pygame.image.load('1993-buick-lesabre-7.jpg')
+
+#bg = pygame.image.load('1993-buick-lesabre-7.jpg')
 white = (255,255,255)
 black = (10,10,10)
 #endregion
+gameDisplay.fill(black)
 
 #region Tetra factory and Tetra Bucket initialization and configuration
 factory = TetraFactory.Factory()
@@ -22,19 +24,22 @@ gameExit = False
 while not gameExit:
 
     #set background to totally sic, undoctored pic of tswift and her lesabre
-    gameDisplay.blit(bg, (0, 0))
+    #gameDisplay.blit(bg, (0, 0))
     #draw rectangle
     pygame.draw.rect(gameDisplay, white, [20, 500, 10, 10])
 
     for event in pygame.event.get():
 
-        pygame.display.update()
+        #pygame.display.update()
 
         if event.type == pygame.QUIT:
             gameExit = True
 
         if event.type == pygame.KEYDOWN:
-            bucket.move("down")
+            if event.key == pygame.K_DOWN:
+                bucket.move("down")
+                pygame.display.update()
+
 
 
 #endregion
