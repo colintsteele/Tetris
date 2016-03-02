@@ -30,18 +30,21 @@ class Bucket(object):
         else:
             #moving in that direction is ok, check which direction to move in, and move there
             if direction.lower() == 'down':
-                print("hey")
                 self.activeTetra.update("posY",self.activeTetra.posY+10)
                 self.render(self.activeTetra)
-                print(self.activeTetra.toHash())
 
             elif direction.lower() == 'left':
-                stub = True
+                self.activeTetra.update("posX",self.activeTetra.posX-10)
+                self.render(self.activeTetra)
 
             elif direction.lower() == 'right':
-                stub = True
-            elif direction.lower() == 'top':
-                stub = True
+                self.activeTetra.update("posX",self.activeTetra.posX+10)
+                self.render(self.activeTetra)
+
+            elif direction.lower() == 'up':
+                self.activeTetra.update("posY",self.activeTetra.posY-10)
+                self.render(self.activeTetra)
+
             else:
                 print('no direction given')
                 #TODO write exception for no direction being given

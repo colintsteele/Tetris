@@ -39,10 +39,17 @@ while not gameExit:
             if event.key == pygame.K_DOWN:
                 bucket.move("down")
                 pygame.display.update()
-
+            if event.key == pygame.K_UP:
+                bucket.move("up")
+                pygame.display.update()
+            if event.key == pygame.K_LEFT:
+                bucket.move("left")
+                pygame.display.update()
+            if event.key == pygame.K_RIGHT:
+                bucket.move("right")
+                pygame.display.update()
 
 
 #endregion
-
 pygame.quit()
 quit()
