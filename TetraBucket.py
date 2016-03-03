@@ -7,7 +7,13 @@ class Bucket():
         self.factory = factory
         self.activeTetra = self.factory.newTetra()
         self.gameDisplay = gameDisplay
+        #x range = 40 - 150
+        #y range =
+        self.range = []
+        self.occupiedBlocks = []
+
         #TODO list comprehension which initializes an empty 10X22 field (100 px by 220px + bottom row and edges = 120px x 230px)
+
 
     def rotateCW(self):
         stub = True
@@ -19,8 +25,6 @@ class Bucket():
 
     def checkAdjacent(self, direction, tetra):
         'checks the bucket object\'s matrix to see if adjacent blocks are occupied or out of bounds'
-
-
 
     def move(self, direction = 'down'):
         #see if it is ok to move in the given direction
