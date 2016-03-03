@@ -1,5 +1,4 @@
 class Tetra(object):
-
     def __init__(self, shape, dimX, dimY):
         self.shape = shape
         self.dimX = dimX

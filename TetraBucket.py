@@ -2,7 +2,7 @@
 import pygame
 import TetraFactory
 
-class Bucket(object):
+class Bucket():
     def __init__(self, factory, gameDisplay):
         self.factory = factory
         self.activeTetra = self.factory.newTetra()
@@ -18,7 +18,8 @@ class Bucket(object):
         #TODO create an actual rotate method, maybe with numpy
 
     def checkAdjacent(self, direction, tetra):
-        stub = True
+        'checks the bucket object\'s matrix to see if adjacent blocks are occupied or out of bounds'
+
 
 
     def move(self, direction = 'down'):

@@ -3,6 +3,7 @@
 import Tetra
 import random
 
+
 class Factory(object):
 
     __shapeList = {
@@ -19,7 +20,7 @@ class Factory(object):
         #generate a random shape by default
         if s.lower() == 'random':
             shape = random.choice(list(self.__shapeList.keys()))
-            #print(shape)
+            print(shape)
         else:
             shape = s
     
