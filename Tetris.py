@@ -52,6 +52,9 @@ while not gameExit:
             if event.key == pygame.K_RIGHT:
                 bucket.move("right")
                 pygame.display.update()
+            if event.key == pygame.K_i:
+                bucket.test()
+
 
 
 #endregion

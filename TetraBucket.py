@@ -7,13 +7,11 @@ class Bucket():
         self.factory = factory
         self.activeTetra = self.factory.newTetra()
         self.gameDisplay = gameDisplay
-        #x range = 40 - 150
-        #y range =
         self.range = []
-        self.occupiedBlocks = []
+        self.occupiedBlocks = [[0 for y in range(21)] for x in range(10)]
+        self.offset = (50,20)
 
         #TODO list comprehension which initializes an empty 10X22 field (100 px by 220px + bottom row and edges = 120px x 230px)
-
 
     def rotateCW(self):
         stub = True
@@ -27,8 +25,8 @@ class Bucket():
         'checks the bucket object\'s matrix to see if adjacent blocks are occupied or out of bounds'
 
     def move(self, direction = 'down'):
-        #see if it is ok to move in the given direction
-        #if not self.checkAdjacent(direction, self.activeTetra):
+        'Move the active tetra a single space in the given direction'
+
         if False:
             print('cannot move in that direction!')
             #TODO write exception for not being able to move, catch and do nothing... or something like that
@@ -67,6 +65,10 @@ class Bucket():
 
     def setActiveTetra(self, tetra):
         self.activeTetra = tetra
+
+    def test(self):
+        print(self.activeTetra.toHash())
+        print(self.offset[0], self.offset[1])
 
 
 
