@@ -66,12 +66,13 @@ class Bucket():
         self.activeTetra = tetra
 
     def test(self):
-        print(self.activeTetra.toHash())
-        print(self.offset[0], self.offset[1])
         localX = self.activeTetra.posX
         localY = self.activeTetra.posX
+        print( 'x location:', int(localX-self.offset[0]) )
+        print( 'y location:', int(localY-self.offset[1]) )
 
-        print(self.occupiedBlocks[localX/10-self.offset[0]], self.occupiedBlocks[localY/10-self.offset[1]])
+
+        #print(self.occupiedBlocks[int(localX-self.offset[0]/10)][int(localY-self.offset[1]/10)])
 
 
 
