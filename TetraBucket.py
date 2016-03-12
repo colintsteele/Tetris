@@ -10,7 +10,6 @@ class Bucket():
         self.range = []
         self.occupiedBlocks = [[0 for y in range(21)] for x in range(10)]
         self.offset = (50,20)
-
         #TODO list comprehension which initializes an empty 10X22 field (100 px by 220px + bottom row and edges = 120px x 230px)
 
     def rotateCW(self):
@@ -69,6 +68,10 @@ class Bucket():
     def test(self):
         print(self.activeTetra.toHash())
         print(self.offset[0], self.offset[1])
+        localX = self.activeTetra.posX
+        localY = self.activeTetra.posX
+
+        print(self.occupiedBlocks[localX/10-self.offset[0]], self.occupiedBlocks[localY/10-self.offset[1]])
 
 
 
