@@ -9,7 +9,6 @@ class Bucket():
         self.gameDisplay = gameDisplay
         self.range = []
         self.occupiedBlocks = [[0 for y in range(21)] for x in range(10)]
-        self.offset = (50,20)
         #TODO list comprehension which initializes an empty 10X22 field (100 px by 220px + bottom row and edges = 120px x 230px)
 
     def rotateCW(self):
@@ -22,11 +21,23 @@ class Bucket():
 
     def checkAdjacent(self, direction, tetra):
         'checks the bucket object\'s matrix to see if adjacent blocks are occupied or out of bounds'
+        if direction.lower() == 'down':
+            #we check to see if the tetra's posY is past badY
+            if tetra.posY == 200:
+                return True
+
+        if direction.lower() == 'left':
+            if tetra.posX == 10:
+                return True
+
+        if direction.lower() == 'right':
+            if tetra.posX == 100:
+                return True
 
     def move(self, direction = 'down'):
         'Move the active tetra a single space in the given direction'
 
-        if False:
+        if self.checkAdjacent(direction, self.activeTetra):
             print('cannot move in that direction!')
             #TODO write exception for not being able to move, catch and do nothing... or something like that
         else:
@@ -66,10 +77,14 @@ class Bucket():
         self.activeTetra = tetra
 
     def test(self):
+        print(self.activeTetra.toHash())
+        print(self.checkAdjacent('left', self.activeTetra))
+        print(self.checkAdjacent('right', self.activeTetra))
+        print(self.checkAdjacent('down', self.activeTetra))
         localX = self.activeTetra.posX
         localY = self.activeTetra.posX
-        print( 'x location:', int(localX-self.offset[0]) )
-        print( 'y location:', int(localY-self.offset[1]) )
+        #print( 'x location:', int(localX-self.offset[0]) )
+        #print( 'y location:', int(localY-self.offset[1]) )
 
 
         #print(self.occupiedBlocks[int(localX-self.offset[0]/10)][int(localY-self.offset[1]/10)])

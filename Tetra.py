@@ -4,7 +4,7 @@ class Tetra(object):
         self.dimX = dimX
         self.dimY = dimY
         self.posX = 50
-        self.posY = 20
+        self.posY = 0
 
     def update(self, choice, value):
         if choice.lower() == "posx":

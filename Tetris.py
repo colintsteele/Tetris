@@ -5,7 +5,7 @@ import pygame
 
 #region pygame initialization and configuration
 pygame.init()
-gameDisplay = pygame.display.set_mode((200,400))
+gameDisplay = pygame.display.set_mode((120,220))
 pygame.display.set_caption('Taylor Swift\'s 1999 Buick LeSabre')
 
 #bg = pygame.image.load('1993-buick-lesabre-7.jpg')
@@ -25,11 +25,16 @@ while not gameExit:
 
     #set background to totally sic, undoctored pic of tswift and her lesabre
     #gameDisplay.blit(bg, (0, 0))
-    #draw rectangle
-    pygame.draw.rect(gameDisplay, white, [50,220,100,10])
+    #draw rectangle                     [posx, posy, width, height]
 
-    pygame.draw.rect(gameDisplay, white, [40,20,10,210])
-    pygame.draw.rect(gameDisplay, white, [150,20,10,210])
+    #left edge
+    pygame.draw.rect(gameDisplay, white, [0,0,10,220])
+    #right edge
+    pygame.draw.rect(gameDisplay, white, [110,0,10,220])
+    #bottom edge
+    pygame.draw.rect(gameDisplay, white, [0,210,120,10])
+    #pygame.draw.rect(gameDisplay, white, [90,20,10,210])
+    #pygame.draw.rect(gameDisplay, white, [150,20,10,210])
     pygame.display.update()
 
     for event in pygame.event.get():
