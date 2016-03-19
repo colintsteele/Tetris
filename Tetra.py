@@ -5,6 +5,7 @@ class Tetra(object):
         self.dimX = dimX
         self.dimY = dimY
 
+
         self.posX = 50
         self.posY = 0
 
@@ -18,6 +19,9 @@ class Tetra(object):
             self.dimX = value
         if choice.lower() == "dimy":
             self.dimY = value
+
+    def test(self):
+        print(self.orientation)
 
     def toHash(self):
         return {'shape':self.shape,'dimX':self.dimX,'dimY':self.dimY,"posX":self.posX,"posY":self.posY}
