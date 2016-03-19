@@ -1,10 +1,13 @@
 class Tetra(object):
-    def __init__(self, shape, dimX, dimY):
-        self.shape = shape
+    def __init__(self, orientation, dimX, dimY):
+        #shape and orientation are the same thing
+        self.orientation = orientation
         self.dimX = dimX
         self.dimY = dimY
+
         self.posX = 50
         self.posY = 0
+
 
     def update(self, choice, value):
         if choice.lower() == "posx":
