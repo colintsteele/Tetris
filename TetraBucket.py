@@ -65,24 +65,18 @@ class Bucket():
 
     def render(self, tetra):
         self.gameDisplay.fill((0,0,0))
-        deets = [tetra.posX,tetra.posY,10,10]
-
-        rows = self.activeTetra.orientation
-        columns = self.activeTetra.orientation[0]
+        #deets = [tetra.posX,tetra.posY,10,10]
 
         row = 0
-        col = 0
-
-        #for 1s in tetra:
         for i in tetra.orientation:
+            col = 0
             for j in i:
                 try:
                     if j == 1:
                         x = tetra.posX + (10 * col)
                         y = tetra.posY + (10 * row)
-                        pygame.draw.rect(self.gameDisplay, (255,255,255), [tetra.posX+(i[0]*10), tetra.posY+(i[1]*10), 10,10])
-                        print('count')
-                        print(tetra.posX+(i[0]*10), tetra.posY+(i[1]*10))
+                        pygame.draw.rect(self.gameDisplay, (255,255,255), [tetra.posX+(x), tetra.posY+(y), 10,10])
+                        print()
                     col+=1
                 except:
                     print(i, j)#[ix, iy] j
@@ -94,7 +88,7 @@ class Bucket():
 
 
 
-        pygame.draw.rect(self.gameDisplay, (255,255,255), deets)
+        #pygame.draw.rect(self.gameDisplay, (255,255,255), deets)
         pygame.display.update()
 
     def cement(self, tetra):
