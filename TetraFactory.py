@@ -3,8 +3,11 @@
 import Tetra
 import random
 
+class Factory():
 
-class Factory(object):
+    #__shapeList
+    # each tetra needs an origin point with which to sort of pin to the background
+
 
     __shapeList = {
         'cube': [[1,1],[1,1]],
