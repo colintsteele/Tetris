@@ -1,11 +1,12 @@
 #the Tetra Bucket is charged with keeping track of the tetras which are currently
 import pygame
 import TetraFactory
+import traceback
 
 class Bucket():
     def __init__(self, factory, gameDisplay):
         self.factory = factory
-        self.activeTetra = self.factory.newTetra()
+        self.activeTetra = self.factory.newTetra('backwardsL')
         self.gameDisplay = gameDisplay
         self.range = []
         self.occupiedBlocks = [[0 for y in range(21)] for x in range(10)]
@@ -66,15 +67,24 @@ class Bucket():
         self.gameDisplay.fill((0,0,0))
         deets = [tetra.posX,tetra.posY,10,10]
 
-        rows = len(self.activeTetra.orientation)
-        columns =len(self.activeTetra.orientation[0])
+        rows = self.activeTetra.orientation
+        columns = self.activeTetra.orientation[0]
 
         #for 1s in tetra:
         for i in rows:
-            for j in columns:
-                #pygame.draw.rect(self.gameDisplay, (255,255,255),
-                if self.activeTetra.orientationp[i][j] == 1:
-                    pygame.draw.rect(self.gameDisplay), (255,255,255), [tetra.posX+(i*10), tetra.posY+(j*10), 10,10]
+            for j in i:
+                try:
+                    if j == 1:
+                        pygame.draw.rect(self.gameDisplay, (255,255,255), [tetra.posX+(i[0]*10), tetra.posY+(i[1]*10), 10,10])
+                        print('count')
+                        print(tetra.posX+(i[0]*10), tetra.posY+(i[1]*10))
+                except:
+                    print(i, j)#[ix, iy] j
+                    print(j == 1)#truthy
+
+                    traceback.print_exc()
+
+
 
         pygame.draw.rect(self.gameDisplay, (255,255,255), deets)
         pygame.display.update()

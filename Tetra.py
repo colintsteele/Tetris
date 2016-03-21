@@ -10,12 +10,6 @@ class Tetra(object):
         rows = len(orientation)
         columns =len(orientation[0])
 
-        for i in rows:
-            for j in columns:
-                if orientation[i][j] == 1:
-                    #x offset of +10
-                    render(gameDisplay, (i+10, j, 10, 10))
-
         #draw square on surface
 
     def update(self, choice, value):
