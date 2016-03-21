@@ -70,19 +70,27 @@ class Bucket():
         rows = self.activeTetra.orientation
         columns = self.activeTetra.orientation[0]
 
+        row = 0
+        col = 0
+
         #for 1s in tetra:
-        for i in rows:
+        for i in tetra.orientation:
             for j in i:
                 try:
                     if j == 1:
+                        x = tetra.posX + (10 * col)
+                        y = tetra.posY + (10 * row)
                         pygame.draw.rect(self.gameDisplay, (255,255,255), [tetra.posX+(i[0]*10), tetra.posY+(i[1]*10), 10,10])
                         print('count')
                         print(tetra.posX+(i[0]*10), tetra.posY+(i[1]*10))
+                    col+=1
                 except:
                     print(i, j)#[ix, iy] j
                     print(j == 1)#truthy
-
                     traceback.print_exc()
+
+                row+=1
+
 
 
 
