@@ -77,13 +77,13 @@ class Bucket():
                         y = tetra.posY + (10 * row)
                         pygame.draw.rect(self.gameDisplay, (255,255,255), [tetra.posX+(x), tetra.posY+(y), 10,10])
                         print()
-                    col+=1
                 except:
                     print(i, j)#[ix, iy] j
                     print(j == 1)#truthy
                     traceback.print_exc()
+                col+=1
 
-                row+=1
+            row+=1
 
 
 
