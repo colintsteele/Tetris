@@ -1,14 +1,22 @@
 class Tetra(object):
     def __init__(self, orientation, dimX, dimY):
-        #shape and orientation are the same thing
         self.orientation = orientation
         self.dimX = dimX
         self.dimY = dimY
 
-
         self.posX = 50
         self.posY = 0
 
+        rows = len(orientation)
+        columns =len(orientation[0])
+
+        for i in rows:
+            for j in columns:
+                if orientation[i][j] == 1:
+                    #x offset of +10
+                    render(gameDisplay, (i+10, j, 10, 10))
+
+        #draw square on surface
 
     def update(self, choice, value):
         if choice.lower() == "posx":

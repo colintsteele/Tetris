@@ -65,6 +65,17 @@ class Bucket():
     def render(self, tetra):
         self.gameDisplay.fill((0,0,0))
         deets = [tetra.posX,tetra.posY,10,10]
+
+        rows = len(self.activeTetra.orientation)
+        columns =len(self.activeTetra.orientation[0])
+
+        #for 1s in tetra:
+        for i in rows:
+            for j in columns:
+                #pygame.draw.rect(self.gameDisplay, (255,255,255),
+                if self.activeTetra.orientationp[i][j] == 1:
+                    pygame.draw.rect(self.gameDisplay), (255,255,255), [tetra.posX+(i*10), tetra.posY+(j*10), 10,10]
+
         pygame.draw.rect(self.gameDisplay, (255,255,255), deets)
         pygame.display.update()
 
