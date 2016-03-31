@@ -1,24 +1,25 @@
 #the Tetra Bucket is charged with keeping track of the tetras which are currently
 import pygame
+#import numpy
+import np
 import TetraFactory
 import traceback
 
 class Bucket():
     def __init__(self, factory, gameDisplay):
         self.factory = factory
-        self.activeTetra = self.factory.newTetra('backwardsL')
+        self.activeTetra = self.factory.newTetra()
         self.gameDisplay = gameDisplay
         self.range = []
         self.occupiedBlocks = [[0 for y in range(21)] for x in range(10)]
-        #TODO list comprehension which initializes an empty 10X22 field (100 px by 220px + bottom row and edges = 120px x 230px)
 
-    def rotateCW(self):
-        stub = True
-        #TODO create an actual rotate method, maybe with numpy
+    def rotate(self):
+        'method to rotate the given tetra in place using numpy'
+        self.activeTetra.orientation = np.rot90(np.array(self.activeTetra.orientation), 1)
 
-    def rotateCCW(self):
-        stub = True
-        #TODO create an actual rotate method, maybe with numpy
+        self.render(self.activeTetra)
+
+
 
     def checkAdjacent(self, direction, tetra):
         'checks the bucket object\'s matrix to see if adjacent blocks are occupied or out of bounds'
@@ -78,15 +79,12 @@ class Bucket():
                         pygame.draw.rect(self.gameDisplay, (255,255,255), [tetra.posX+(x), tetra.posY+(y), 10,10])
                         print()
                 except:
-                    print(i, j)#[ix, iy] j
-                    print(j == 1)#truthy
+                    #print(i, j)#[ix, iy] j
+                    #print(j == 1)#truthy
                     traceback.print_exc()
                 col+=1
 
             row+=1
-
-
-
 
         #pygame.draw.rect(self.gameDisplay, (255,255,255), deets)
         pygame.display.update()

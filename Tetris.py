@@ -6,7 +6,7 @@ import pygame
 #region pygame initialization and configuration
 pygame.init()
 gameDisplay = pygame.display.set_mode((120,220))
-pygame.display.set_caption('Taylor Swift\'s 1999 Buick LeSabre')
+pygame.display.set_caption('Tetrus')
 
 #bg = pygame.image.load('1993-buick-lesabre-7.jpg')
 white = (255,255,255)
@@ -56,6 +56,9 @@ while not gameExit:
                 pygame.display.update()
             if event.key == pygame.K_RIGHT:
                 bucket.move("right")
+                pygame.display.update()
+            if event.key == pygame.K_f:
+                bucket.rotate()
                 pygame.display.update()
             if event.key == pygame.K_i:
                 bucket.test()

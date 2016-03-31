@@ -26,6 +26,6 @@ class Tetra(object):
         print(self.orientation)
 
     def toHash(self):
-        return {'shape':self.shape,'dimX':self.dimX,'dimY':self.dimY,"posX":self.posX,"posY":self.posY}
+        print( {'shape':self.orientation,'dimX':self.dimX,'dimY':self.dimY,"posX":self.posX,"posY":self.posY} )
 
 
