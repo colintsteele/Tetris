@@ -1,6 +1,6 @@
 #the Tetra Bucket is charged with keeping track of the tetras which are currently
 import pygame
-#import numpy
+import numpy
 import np
 import TetraFactory
 import traceback
@@ -16,7 +16,6 @@ class Bucket():
     def rotate(self):
         'method to rotate the given tetra in place using numpy'
         self.activeTetra.orientation = np.rot90(np.array(self.activeTetra.orientation), 1)
-
         self.render(self.activeTetra)
 
 
@@ -24,16 +23,21 @@ class Bucket():
     def checkAdjacent(self, direction, tetra):
         'checks the bucket object\'s matrix to see if adjacent blocks are occupied or out of bounds'
         if direction.lower() == 'down':
-            #we check to see if the tetra's posY is past badY
-            if tetra.posY == 200:
+            #find lowest tetra block
+            if tetra.posY == 100:
+                print('eek')
                 return True
 
         if direction.lower() == 'left':
-            if tetra.posX == 10:
+            #find leftmost tetra block
+            if tetra.posX == 0:
+                print('eek')
                 return True
 
         if direction.lower() == 'right':
-            if tetra.posX == 100:
+            #find rightmost tetra block
+            if tetra.posX == 50:
+                print('eek')
                 return True
 
     def move(self, direction = 'down'):
@@ -41,33 +45,34 @@ class Bucket():
 
         if self.checkAdjacent(direction, self.activeTetra):
             print('cannot move in that direction!')
-            #TODO write exception for not being able to move, catch and do nothing... or something like that
+
         else:
             #moving in that direction is ok, check which direction to move in, and move there
             if direction.lower() == 'down':
-                self.activeTetra.update("posY",self.activeTetra.posY+10)
+                self.activeTetra.update("posY",self.activeTetra.posY+5)
                 self.render(self.activeTetra)
 
             elif direction.lower() == 'left':
-                self.activeTetra.update("posX",self.activeTetra.posX-10)
+                self.activeTetra.update("posX",self.activeTetra.posX-5)
                 self.render(self.activeTetra)
 
             elif direction.lower() == 'right':
-                self.activeTetra.update("posX",self.activeTetra.posX+10)
+                self.activeTetra.update("posX",self.activeTetra.posX+5)
                 self.render(self.activeTetra)
 
             elif direction.lower() == 'up':
-                self.activeTetra.update("posY",self.activeTetra.posY-10)
+                self.activeTetra.update("posY",self.activeTetra.posY-5)
                 self.render(self.activeTetra)
 
             else:
                 print('no direction given')
                 #TODO write exception for no direction being given
+        self.activeTetra.toHash()
 
     def render(self, tetra):
         self.gameDisplay.fill((0,0,0))
         #deets = [tetra.posX,tetra.posY,10,10]
-
+        first = True
         row = 0
         for i in tetra.orientation:
             col = 0
@@ -76,8 +81,12 @@ class Bucket():
                     if j == 1:
                         x = tetra.posX + (10 * col)
                         y = tetra.posY + (10 * row)
-                        pygame.draw.rect(self.gameDisplay, (255,255,255), [tetra.posX+(x), tetra.posY+(y), 10,10])
-                        print()
+                        if first:
+                            pygame.draw.rect(self.gameDisplay, (255,255,255), [tetra.posX+(x), tetra.posY+(y), 10,10])
+                            first = False
+                        else:
+                            pygame.draw.rect(self.gameDisplay, (200,200,200), [tetra.posX+(x), tetra.posY+(y), 10,10])
+
                 except:
                     #print(i, j)#[ix, iy] j
                     #print(j == 1)#truthy

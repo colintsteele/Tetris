@@ -27,14 +27,21 @@ while not gameExit:
     #gameDisplay.blit(bg, (0, 0))
     #draw rectangle                     [posx, posy, width, height]
 
+    #draw checkered squares
+    pygame.draw.rect(gameDisplay, white, [20, 0, 10, 10])
+    pygame.draw.rect(gameDisplay, white, [40, 0, 10, 10])
+    pygame.draw.rect(gameDisplay, white, [60, 0, 10, 10])
+    pygame.draw.rect(gameDisplay, white, [80, 0, 10, 10])
+    pygame.draw.rect(gameDisplay, white, [100, 0, 10, 10])
+    pygame.draw.rect(gameDisplay, white, [120, 0, 10, 10])
+
     #left edge
     pygame.draw.rect(gameDisplay, white, [0,0,10,220])
     #right edge
     pygame.draw.rect(gameDisplay, white, [110,0,10,220])
     #bottom edge
-    pygame.draw.rect(gameDisplay, white, [0,210,120,10])
-    #pygame.draw.rect(gameDisplay, white, [90,20,10,210])
-    #pygame.draw.rect(gameDisplay, white, [150,20,10,210])
+    pygame.draw.rect(gameDisplay, white, [0,210,110,10])
+
     pygame.display.update()
 
     for event in pygame.event.get():
