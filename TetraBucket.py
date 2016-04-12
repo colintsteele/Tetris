@@ -22,22 +22,27 @@ class Bucket():
 
     def checkAdjacent(self, direction, tetra):
         'checks the bucket object\'s matrix to see if adjacent blocks are occupied or out of bounds'
+        # if direction.lower() == 'down':
+        #     #find lowest tetra block
+        #     if tetra.posY == 100:
+        #         print('eek')
+        #         return True
+
         if direction.lower() == 'down':
-            #find lowest tetra block
-            if tetra.posY == 100:
-                print('eek')
+            if tetra.posY + len(tetra.orientation)*5 == 105:
+                print(self.getCoords(tetra))
                 return True
+
 
         if direction.lower() == 'left':
             #find leftmost tetra block
-            if tetra.posX == 0:
+            if tetra.posX == 5:
                 print('eek')
                 return True
 
         if direction.lower() == 'right':
             #find rightmost tetra block
-            if tetra.posX == 50:
-                print('eek')
+            if tetra.posX + len(tetra.orientation[0])*5 == 55:
                 return True
 
     def move(self, direction = 'down'):
@@ -71,8 +76,8 @@ class Bucket():
 
     def render(self, tetra):
         self.gameDisplay.fill((0,0,0))
-        #deets = [tetra.posX,tetra.posY,10,10]
         first = True
+
         row = 0
         for i in tetra.orientation:
             col = 0
@@ -119,6 +124,17 @@ class Bucket():
 
         #print(self.occupiedBlocks[int(localX-self.offset[0]/10)][int(localY-self.offset[1]/10)])
 
+    def getCoords(self, tetra):
+        space = []
+        row = 0
+        for i in tetra.orientation:
+            col = 0
+            for j in i:
+                if j == 1:
+                    space.append( (tetra.posX+col*5, tetra.posY+row*5) )
+                col +=1
+            row+=1
+        return space
 
 
 
