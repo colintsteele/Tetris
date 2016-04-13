@@ -21,7 +21,7 @@ class Factory():
         #generate a random shape by default
         if s.lower() == 'random':
             shape = random.choice(list(self.__shapeList.keys()))
-            print(shape)
+
         else:
             shape = s
     

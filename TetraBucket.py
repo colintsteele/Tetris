@@ -12,7 +12,7 @@ class Bucket():
         self.gameDisplay = gameDisplay
         self.range = []
         self.occupiedBlocks = [[0 for y in range(22)] for x in range(11)]
-
+        self.blocks = 0
 
     def update(self):
         'draws occupiedblocks'
@@ -53,6 +53,15 @@ class Bucket():
             if self.occupiedBlocks[(i[0]/5)][i[1]/5+1] == 1:
                 self.cement()
 
+    def cement(self):
+        coords = self.getCoords()
+        print coords
+        for i in coords:
+            self.occupiedBlocks[i[0]/5][i[1]/5] = 1
+            self.blocks+=1
+
+        self.activeTetra = self.factory.newTetra()
+        print(self.blocks)
 
 
     def move(self, direction = 'down'):
@@ -103,14 +112,6 @@ class Bucket():
                 col+=1
 
             row+=1
-
-    def cement(self):
-        coords = self.getCoords()
-        for i in coords:
-            self.occupiedBlocks[i[0]/5][i[1]/5] = 1
-
-        self.activeTetra = self.factory.newTetra()
-
 
     def setActiveTetra(self, tetra):
         self.activeTetra = tetra
