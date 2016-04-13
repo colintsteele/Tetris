@@ -6,6 +6,7 @@ class Tetra(object):
 
         self.posX = 25
         self.posY = 0
+        self.still = True
 
         rows = len(orientation)
         columns =len(orientation[0])
