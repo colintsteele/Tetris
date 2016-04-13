@@ -4,7 +4,7 @@ class Tetra(object):
         self.dimX = dimX
         self.dimY = dimY
 
-        self.posX = 50
+        self.posX = 25
         self.posY = 0
 
         rows = len(orientation)

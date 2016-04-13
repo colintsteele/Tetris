@@ -22,15 +22,10 @@ class Bucket():
 
     def checkAdjacent(self, direction, tetra):
         'checks the bucket object\'s matrix to see if adjacent blocks are occupied or out of bounds'
-        # if direction.lower() == 'down':
-        #     #find lowest tetra block
-        #     if tetra.posY == 100:
-        #         print('eek')
-        #         return True
 
         if direction.lower() == 'down':
             if tetra.posY + len(tetra.orientation)*5 == 105:
-                print(self.getCoords(tetra))
+                print(self.getCoords())
                 return True
 
 
@@ -93,8 +88,6 @@ class Bucket():
                             pygame.draw.rect(self.gameDisplay, (200,200,200), [tetra.posX+(x), tetra.posY+(y), 10,10])
 
                 except:
-                    #print(i, j)#[ix, iy] j
-                    #print(j == 1)#truthy
                     traceback.print_exc()
                 col+=1
 
@@ -103,8 +96,15 @@ class Bucket():
         #pygame.draw.rect(self.gameDisplay, (255,255,255), deets)
         pygame.display.update()
 
-    def cement(self, tetra):
+    def cement(self):
         stub = True
+        coords = self.getCoords()
+        for i in coords:
+            print(i[0]/5,i[1]/5)
+            #print self.occupiedBlocks[i[0]/5][i[1]/5]
+            self.occupiedBlocks[i[0]/5][i[1]/5] = 1
+            print self.occupiedBlocks
+
         #TODO write method for cement, where the active tetra cannot move down, and the timer for movement has expired
 
 
@@ -124,7 +124,8 @@ class Bucket():
 
         #print(self.occupiedBlocks[int(localX-self.offset[0]/10)][int(localY-self.offset[1]/10)])
 
-    def getCoords(self, tetra):
+    def getCoords(self):
+        tetra = self.activeTetra
         space = []
         row = 0
         for i in tetra.orientation:

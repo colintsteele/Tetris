@@ -1,9 +1,11 @@
 import TetraFactory
 import TetraBucket
 import pygame
+from twisted.internet import task
+from twisted.internet import reactor
+import time
 
-
-#region pygame initialization and configuration
+#pygame initialization and configuration
 pygame.init()
 gameDisplay = pygame.display.set_mode((120,220))
 pygame.display.set_caption('Tetrus')
@@ -11,45 +13,46 @@ pygame.display.set_caption('Tetrus')
 #bg = pygame.image.load('1993-buick-lesabre-7.jpg')
 white = (255,255,255)
 black = (10,10,10)
-#endregion
+
 gameDisplay.fill(black)
 
-#region Tetra factory and Tetra Bucket initialization and configuration
+#Tetra factory and Tetra Bucket initialization and configuration
 factory = TetraFactory.Factory()
 bucket = TetraBucket.Bucket(factory, gameDisplay)
-#endregion
 
-#region Main game loop
 gameExit = False
+
+#pygame.time.set_timer(pygame.USEREVENT+1, 250)
+
 while not gameExit:
 
+    #time.sleep(0.1)
     #set background to totally sic, undoctored pic of tswift and her lesabre
     #gameDisplay.blit(bg, (0, 0))
     #draw rectangle                     [posx, posy, width, height]
 
     #draw checkered squares
-    pygame.draw.rect(gameDisplay, white, [20, 0, 10, 10])
-    pygame.draw.rect(gameDisplay, white, [40, 0, 10, 10])
-    pygame.draw.rect(gameDisplay, white, [60, 0, 10, 10])
-    pygame.draw.rect(gameDisplay, white, [80, 0, 10, 10])
-    pygame.draw.rect(gameDisplay, white, [100, 0, 10, 10])
-    pygame.draw.rect(gameDisplay, white, [120, 0, 10, 10])
+    # pygame.draw.rect(gameDisplay, white, [20, 0, 10, 10])
+    # pygame.draw.rect(gameDisplay, white, [40, 0, 10, 10])
+    # pygame.draw.rect(gameDisplay, white, [60, 0, 10, 10])
+    # pygame.draw.rect(gameDisplay, white, [80, 0, 10, 10])
+    # pygame.draw.rect(gameDisplay, white, [100, 0, 10, 10])
+    # pygame.draw.rect(gameDisplay, white, [120, 0, 10, 10])
 
-    #left edge
     pygame.draw.rect(gameDisplay, white, [0,0,10,220])
-    #right edge
     pygame.draw.rect(gameDisplay, white, [110,0,10,220])
-    #bottom edge
     pygame.draw.rect(gameDisplay, white, [0,210,110,10])
+    #left edge
+
 
     pygame.display.update()
 
     for event in pygame.event.get():
 
-        #pygame.display.update()
 
-        if event.type == pygame.QUIT:
-            gameExit = True
+        if event.type == pygame.USEREVENT+1:
+            bucket.move('down')
+
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_DOWN:
@@ -68,10 +71,14 @@ while not gameExit:
                 bucket.rotate()
                 pygame.display.update()
             if event.key == pygame.K_i:
-                bucket.test()
+                print(bucket.getCoords())
+            if event.key == pygame.K_c:
+                bucket.cement()
 
 
 
-#endregion
+        if event.type == pygame.QUIT:
+            gameExit = True
+
 pygame.quit()
 quit()
