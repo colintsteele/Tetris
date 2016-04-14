@@ -1,14 +1,14 @@
 class Tetra(object):
     def __init__(self, orientation, dimX, dimY):
-        #shape and orientation are the same thing
         self.orientation = orientation
         self.dimX = dimX
         self.dimY = dimY
 
-
-        self.posX = 50
+        self.posX = 5
         self.posY = 0
+        self.color = ()
 
+        #draw square on surface
 
     def update(self, choice, value):
         if choice.lower() == "posx":
@@ -24,6 +24,6 @@ class Tetra(object):
         print(self.orientation)
 
     def toHash(self):
-        return {'shape':self.shape,'dimX':self.dimX,'dimY':self.dimY,"posX":self.posX,"posY":self.posY}
+        print( {'shape':self.orientation,'dimX':self.dimX,'dimY':self.dimY,"posX":self.posX,"posY":self.posY} )
 
 

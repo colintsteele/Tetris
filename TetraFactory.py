@@ -4,15 +4,13 @@ import Tetra
 import random
 
 class Factory():
-
     #__shapeList
     # each tetra needs an origin point with which to sort of pin to the background
 
-
     __shapeList = {
         'cube': [[1,1],[1,1]],
-        'L': [[1,0],[1,0],[1,0],[1,1]],
-        'backwardsL': [[0,1],[0,1],[0,1],[1,1]],
+        'L': [[1,0],[1,0],[1,1]],
+        'backwardsL': [[0,1],[0,1],[1,1]],
         'Z': [[0,1],[1,1],[1,0]],
         'backwardsZ': [[1,0],[1,1],[0,1]],
         'T': [[0,1,0],[1,1,1]],
@@ -23,10 +21,8 @@ class Factory():
         #generate a random shape by default
         if s.lower() == 'random':
             shape = random.choice(list(self.__shapeList.keys()))
-            print(shape)
         else:
             shape = s
-    
         #generate the given shape
         if shape.lower() == 'cube':
             return Tetra.Tetra(self.__shapeList['cube'], 2, 2)
