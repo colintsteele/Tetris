@@ -19,6 +19,7 @@ bucket = TetraBucket.Bucket(factory, gameDisplay)
 
 gameExit = False
 
+#main game timer
 pygame.time.set_timer(pygame.USEREVENT+1, 300)
 
 while not gameExit:

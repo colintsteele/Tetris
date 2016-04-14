@@ -4,12 +4,9 @@ class Tetra(object):
         self.dimX = dimX
         self.dimY = dimY
 
-        self.posX = 25
+        self.posX = 5
         self.posY = 0
-        self.still = True
-
-        rows = len(orientation)
-        columns =len(orientation[0])
+        self.color = ()
 
         #draw square on surface
 

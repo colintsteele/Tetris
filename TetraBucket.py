@@ -12,7 +12,6 @@ class Bucket():
         self.gameDisplay = gameDisplay
         self.range = []
         self.occupiedBlocks = [[0 for y in range(22)] for x in range(11)]
-        self.blocks = 0
 
     def update(self):
         'draws occupiedblocks'
@@ -29,40 +28,44 @@ class Bucket():
 
     def checkAdjacent(self, direction, tetra):
         'checks the bucket object\'s matrix to see if adjacent blocks are occupied or out of bounds'
-
+        print('checking: {} : {}').format(self.getCoords(),tetra.posY/5+len(tetra.orientation))
         #bounds
         if direction.lower() == 'down':
             #lower bound
-            if tetra.posY + len(tetra.orientation)*5 == 105:
+            if (tetra.posY + len(tetra.orientation)*5 == 105):
                 self.cement()
-                print(self.getCoords())
                 return True
+
+            #if the lowest tetra block is just above an occupied block
+            for i in self.getCoords():
+                if self.occupiedBlocks[i[0]][i[1]+1] == 1:
+                    self.cement()
+                    return True
+
 
         if direction.lower() == 'left':
             #left bound
             if tetra.posX == 5:
                 return True
+            #left tetra
+            for i in self.getCoords():
+                if self.occupiedBlocks[i[0]-1][i[1]] == 1:
+                    return True
 
         if direction.lower() == 'right':
             #right bound
             if tetra.posX + len(tetra.orientation[0])*5 == 55:
                 return True
-
-        #running into other tetras
-        for i in self.getCoords():
-            if self.occupiedBlocks[(i[0]/5)][i[1]/5+1] == 1:
-                self.cement()
+            for i in self.getCoords():
+                if self.occupiedBlocks[i[0]+1][i[1]] == 1:
+                    return True
 
     def cement(self):
         coords = self.getCoords()
-        print coords
         for i in coords:
-            self.occupiedBlocks[i[0]/5][i[1]/5] = 1
-            self.blocks+=1
+            self.occupiedBlocks[i[0]][i[1]] = 1
 
         self.activeTetra = self.factory.newTetra()
-        print(self.blocks)
-
 
     def move(self, direction = 'down'):
         'Move the active tetra a single space in the given direction'
@@ -95,23 +98,10 @@ class Bucket():
 
     def render(self, tetra):
         self.gameDisplay.fill((0,0,0))
-        self.activeTetra.still = False
 
-        row = 0
-        for i in tetra.orientation:
-            col = 0
-            for j in i:
-                try:
-                    if j == 1:
-                        x = tetra.posX + (10 * col)
-                        y = tetra.posY + (10 * row)
-                        pygame.draw.rect(self.gameDisplay, (122,43,175), [tetra.posX+(x), tetra.posY+(y), 10,10])
+        for i in self.getCoords():
+            pygame.draw.rect(self.gameDisplay, (122, 43, 175), [i[0]*10, i[1]*10, 10, 10] )
 
-                except:
-                    traceback.print_exc()
-                col+=1
-
-            row+=1
 
     def setActiveTetra(self, tetra):
         self.activeTetra = tetra
@@ -121,26 +111,20 @@ class Bucket():
         print(self.checkAdjacent('left', self.activeTetra))
         print(self.checkAdjacent('right', self.activeTetra))
         print(self.checkAdjacent('down', self.activeTetra))
-        localX = self.activeTetra.posX
-        localY = self.activeTetra.posX
-        #print( 'x location:', int(localX-self.offset[0]) )
-        #print( 'y location:', int(localY-self.offset[1]) )
-
-
-        #print(self.occupiedBlocks[int(localX-self.offset[0]/10)][int(localY-self.offset[1]/10)])
 
     def getCoords(self):
+        'return a list of tuples which contain the indices the active tetra occupies'
         tetra = self.activeTetra
         space = []
         row = 0
+
         for i in tetra.orientation:
             col = 0
             for j in i:
                 if j == 1:
-                    space.append( (tetra.posX+col*5, tetra.posY+row*5) )
+                    space.append( ((tetra.posX)/5+col, (tetra.posY)/5+row) )
                 col +=1
             row+=1
-
 
         return space
 

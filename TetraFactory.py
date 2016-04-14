@@ -21,10 +21,8 @@ class Factory():
         #generate a random shape by default
         if s.lower() == 'random':
             shape = random.choice(list(self.__shapeList.keys()))
-
         else:
             shape = s
-    
         #generate the given shape
         if shape.lower() == 'cube':
             return Tetra.Tetra(self.__shapeList['cube'], 2, 2)
