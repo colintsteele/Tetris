@@ -2,6 +2,7 @@
 
 import Tetra
 import random
+from random import randint
 
 class Factory():
     #__shapeList
@@ -25,20 +26,22 @@ class Factory():
             shape = s
         #generate the given shape
         if shape.lower() == 'cube':
-            return Tetra.Tetra(self.__shapeList['cube'], 2, 2)
+            return Tetra.Tetra(self.__shapeList['cube'], 2, 2, self.color())
         elif shape.lower() == 'l':
-            return Tetra.Tetra(self.__shapeList['L'], 2, 3)
+            return Tetra.Tetra(self.__shapeList['L'], 2, 3,  self.color())
         elif shape.lower() == 'backwardsl':
-            return Tetra.Tetra(self.__shapeList['backwardsL'], 2, 3)
+            return Tetra.Tetra(self.__shapeList['backwardsL'], 2, 3,  self.color())
         elif shape.lower() == 'z':
-            return Tetra.Tetra(self.__shapeList['Z'], 2, 3)
+            return Tetra.Tetra(self.__shapeList['Z'], 2, 3,  self.color())
         elif shape.lower() == 'backwardsz':
-            return Tetra.Tetra(self.__shapeList['backwardsZ'], 2, 3)
+            return Tetra.Tetra(self.__shapeList['backwardsZ'], 2, 3, self.color())
         elif shape.lower() == 't':
-            return Tetra.Tetra(self.__shapeList['T'], 3, 2)
+            return Tetra.Tetra(self.__shapeList['T'], 3, 2,  self.color())
         elif shape.lower() == 'jesus':
-            return Tetra.Tetra(self.__shapeList['Jesus'], 1, 4)
+            return Tetra.Tetra(self.__shapeList['Jesus'], 1, 4,  self.color())
         else:
             print('no shape generated')
 
 
+    def color(self):
+        return (randint(0,225),randint(0,225),randint(0,225))
