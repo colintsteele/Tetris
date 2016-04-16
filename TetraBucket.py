@@ -17,19 +17,28 @@ class Bucket():
         'draws occupiedblocks'
         for i in range(0,11):
             for j in range(0,22):
-                if self.occupiedBlocks[i][j] == 1:
-                    pygame.draw.rect(self.gameDisplay, (255,255,255), [i*10, j*10, 10, 10])
+                if self.occupiedBlocks[i][j] != 0:
+                    pygame.draw.rect(self.gameDisplay, self.occupiedBlocks[i][j], [i*10, j*10, 10, 10])
 
 
     def rotate(self):
         'method to rotate the given tetra in place using numpy'
+        print(self.getCoords())
+
+        #this makes sure the tetra cannot rotate itself out of bounds on the right edge
+        for i in self.getCoords():
+            if i[0] >9:
+                self.move('left')
+
+        #todo make sure the tetras rotated state will not overlap other tetras
+
         self.activeTetra.orientation = np.rot90(np.array(self.activeTetra.orientation), 1)
+
         self.render(self.activeTetra)
 
     def checkAdjacent(self, direction, tetra):
         'checks the bucket object\'s matrix to see if adjacent blocks are occupied or out of bounds'
-        #print('checking: {} : {}').format(self.getCoords(),tetra.posY/5+len(tetra.orientation))
-        #bounds
+
         if direction.lower() == 'down':
             #lower bound
             if (tetra.posY + len(tetra.orientation)*5 == 105):
@@ -38,7 +47,7 @@ class Bucket():
 
             #if the lowest tetra block is just above an occupied block
             for i in self.getCoords():
-                if self.occupiedBlocks[i[0]][i[1]+1] == 1:
+                if self.occupiedBlocks[i[0]][i[1]+1] != 0:
                     self.cement()
                     return True
 
@@ -49,7 +58,7 @@ class Bucket():
                 return True
             #left tetra
             for i in self.getCoords():
-                if self.occupiedBlocks[i[0]-1][i[1]] == 1:
+                if self.occupiedBlocks[i[0]-1][i[1]] != 0:
                     return True
 
         if direction.lower() == 'right':
@@ -57,13 +66,13 @@ class Bucket():
             if tetra.posX + len(tetra.orientation[0])*5 == 55:
                 return True
             for i in self.getCoords():
-                if self.occupiedBlocks[i[0]+1][i[1]] == 1:
+                if self.occupiedBlocks[i[0]+1][i[1]] != 0:
                     return True
 
     def cement(self):
         coords = self.getCoords()
         for i in coords:
-            self.occupiedBlocks[i[0]][i[1]] = 1
+            self.occupiedBlocks[i[0]][i[1]] = self.activeTetra.color
 
         self.activeTetra = self.factory.newTetra()
 
@@ -100,11 +109,7 @@ class Bucket():
         self.gameDisplay.fill((0,0,0))
 
         for i in self.getCoords():
-            pygame.draw.rect(self.gameDisplay, (122, 43, 175), [i[0]*10, i[1]*10, 10, 10] )
-
-
-    def setActiveTetra(self, tetra):
-        self.activeTetra = tetra
+            pygame.draw.rect(self.gameDisplay, self.activeTetra.color, [i[0]*10, i[1]*10, 10, 10] )
 
     def test(self):
         print(self.activeTetra.toHash())

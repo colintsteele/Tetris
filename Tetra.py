@@ -1,12 +1,12 @@
 class Tetra(object):
-    def __init__(self, orientation, dimX, dimY):
+    def __init__(self, orientation, dimX, dimY, color):
         self.orientation = orientation
         self.dimX = dimX
         self.dimY = dimY
 
         self.posX = 5
         self.posY = 0
-        self.color = ()
+        self.color = (color)
 
         #draw square on surface
 
