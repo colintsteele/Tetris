@@ -111,6 +111,20 @@ class Bucket():
         for i in self.getCoords():
             pygame.draw.rect(self.gameDisplay, self.activeTetra.color, [i[0]*10, i[1]*10, 10, 10] )
 
+    def clearLine(self):
+        #IF none of the values in a line of the game board are 0, then the given line must take its
+        #values from the line above it.
+        #loop through 0-21 as i and then loop through self.occupiedblocks[]
+        for y in range(0,21):
+            count = 0
+            for x in self.occupiedBlocks:
+                if x[y] != 0:
+                    count += 1
+            if count == 10:
+                for x in self.occupiedBlocks:
+                    x[y] = x[y-1]
+
+
     def test(self):
         print(self.activeTetra.toHash())
         print(self.checkAdjacent('left', self.activeTetra))
