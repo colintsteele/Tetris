@@ -28,7 +28,7 @@ class Bucket():
 
     def checkAdjacent(self, direction, tetra):
         'checks the bucket object\'s matrix to see if adjacent blocks are occupied or out of bounds'
-        print('checking: {} : {}').format(self.getCoords(),tetra.posY/5+len(tetra.orientation))
+        #print('checking: {} : {}').format(self.getCoords(),tetra.posY/5+len(tetra.orientation))
         #bounds
         if direction.lower() == 'down':
             #lower bound
@@ -122,7 +122,7 @@ class Bucket():
             col = 0
             for j in i:
                 if j == 1:
-                    space.append( ((tetra.posX)/5+col, (tetra.posY)/5+row) )
+                    space.append( (int((tetra.posX)/5+col), int((tetra.posY)/5+row)) )
                 col +=1
             row+=1
 
