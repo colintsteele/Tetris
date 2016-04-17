@@ -74,6 +74,8 @@ class Bucket():
         for i in coords:
             self.occupiedBlocks[i[0]][i[1]] = self.activeTetra.color
 
+        self.clearLine(coords)
+
         self.activeTetra = self.factory.newTetra()
 
     def move(self, direction = 'down'):
@@ -111,18 +113,22 @@ class Bucket():
         for i in self.getCoords():
             pygame.draw.rect(self.gameDisplay, self.activeTetra.color, [i[0]*10, i[1]*10, 10, 10] )
 
-    def clearLine(self):
-        #IF none of the values in a line of the game board are 0, then the given line must take its
-        #values from the line above it.
-        #loop through 0-21 as i and then loop through self.occupiedblocks[]
-        for y in range(0,21):
+    def clearLine(self, coordinates):
+
+        ys = []
+        for i in coordinates:
+            ys.append(i[1])
+
+        for y in ys:
             count = 0
             for x in self.occupiedBlocks:
                 if x[y] != 0:
                     count += 1
-            if count == 10:
-                for x in self.occupiedBlocks:
-                    x[y] = x[y-1]
+            if count >= 10:
+                print('clear %i' %y )
+                for i in range(1,11):
+                    for x in range(y, 1, -1):
+                        self.occupiedBlocks[i][x] = self.occupiedBlocks[i][x-1]
 
 
     def test(self):
