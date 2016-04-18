@@ -23,11 +23,10 @@ gameExit = False
 pygame.time.set_timer(pygame.USEREVENT+1, 300)
 
 while not gameExit:
-
+    #left, right, middle
     pygame.draw.rect(gameDisplay, white, [0,0,10,220])
     pygame.draw.rect(gameDisplay, white, [110,0,10,220])
     pygame.draw.rect(gameDisplay, white, [0,210,110,10])
-    #left edge
 
     bucket.update()
     pygame.display.update()

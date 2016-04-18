@@ -18,7 +18,8 @@ class Bucket():
         for i in range(0,11):
             for j in range(0,22):
                 if self.occupiedBlocks[i][j] != 0:
-                    pygame.draw.rect(self.gameDisplay, self.occupiedBlocks[i][j], [i*10, j*10, 10, 10])
+                    self.drawBlock(self.occupiedBlocks[i][j], (i,j))
+                    #pygame.draw.rect(self.gameDisplay, self.occupiedBlocks[i][j], [i*10, j*10, 10, 10])
 
 
     def rotate(self):
@@ -111,7 +112,19 @@ class Bucket():
         self.gameDisplay.fill((0,0,0))
 
         for i in self.getCoords():
-            pygame.draw.rect(self.gameDisplay, self.activeTetra.color, [i[0]*10, i[1]*10, 10, 10] )
+            self.drawBlock(self.activeTetra.color, i)
+            #pygame.draw.rect(self.gameDisplay, self.activeTetra.color, [i[0]*10, i[1]*10, 10, 10] )
+            #pygame.draw.rect(self.gameDisplay, self.)
+
+    def drawBlock(self, color, coord):
+
+
+        pygame.draw.rect(self.gameDisplay, (0,0,0), [coord[0]*10, coord[1]*10, 10, 10])
+        pygame.draw.rect(self.gameDisplay, color, [coord[0]*10+1, coord[1]*10+1, 8, 8])
+
+
+
+
 
     def clearLine(self, coordinates):
 
