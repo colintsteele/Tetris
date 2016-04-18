@@ -9,9 +9,8 @@ pygame.display.set_caption('Tetrus')
 
 #bg = pygame.image.load('1993-buick-lesabre-7.jpg')
 white = (255,255,255)
-black = (10,10,10)
+black = (45,45,45)
 
-gameDisplay.fill(black)
 
 #Tetra factory and Tetra Bucket initialization and configuration
 factory = TetraFactory.Factory()
@@ -23,11 +22,10 @@ gameExit = False
 pygame.time.set_timer(pygame.USEREVENT+1, 300)
 
 while not gameExit:
-
-    pygame.draw.rect(gameDisplay, white, [0,0,10,220])
-    pygame.draw.rect(gameDisplay, white, [110,0,10,220])
-    pygame.draw.rect(gameDisplay, white, [0,210,110,10])
-    #left edge
+    #left, right, middle
+    #pygame.draw.rect(gameDisplay, white, [0,0,10,220])
+    #pygame.draw.rect(gameDisplay, white, [110,0,10,220])
+    #pygame.draw.rect(gameDisplay, white, [0,210,110,10])
 
     bucket.update()
     pygame.display.update()

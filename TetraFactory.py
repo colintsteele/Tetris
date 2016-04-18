@@ -44,4 +44,4 @@ class Factory():
 
 
     def color(self):
-        return (randint(0,225),randint(0,225),randint(0,225))
+        return (randint(2,9)*25,randint(0,9)*25,randint(0,9)*25)
