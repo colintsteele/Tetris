@@ -14,12 +14,28 @@ class Bucket():
         self.occupiedBlocks = [[0 for y in range(22)] for x in range(11)]
 
     def update(self):
-        'draws occupiedblocks'
+        'draws edges occupiedblocks'
+
+        #left edge
+        for i in range(0,110,1):
+            self.drawBlock((225,225,225),(0,i))
+
+        #right edge
+        for i in range(0,110,1):
+            self.drawBlock((225,225,225),(11,i))
+
+        #bottom edge
+        for i in range(0,110,1):
+            self.drawBlock((225,225,225),(i,21))
+
+
+
         for i in range(0,11):
             for j in range(0,22):
                 if self.occupiedBlocks[i][j] != 0:
                     self.drawBlock(self.occupiedBlocks[i][j], (i,j))
                     #pygame.draw.rect(self.gameDisplay, self.occupiedBlocks[i][j], [i*10, j*10, 10, 10])
+
 
 
     def rotate(self):
@@ -117,8 +133,6 @@ class Bucket():
             #pygame.draw.rect(self.gameDisplay, self.)
 
     def drawBlock(self, color, coord):
-
-
         pygame.draw.rect(self.gameDisplay, (0,0,0), [coord[0]*10, coord[1]*10, 10, 10])
         pygame.draw.rect(self.gameDisplay, color, [coord[0]*10+1, coord[1]*10+1, 8, 8])
 
